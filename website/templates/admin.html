@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<div class="admin-container mt-5">
+    <h1 class="text-center mb-4">👑 Admin nadzorna plošča</h1>
+
+    <div class="admin-card">
+        <h3>Uporabniki:</h3>
+        <ul class="list-group mb-4">
+            {% for u in users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 text-dark">
+                {{ u.id }} - {{ u.email }} - {{ u.first_name }}
+                {% if not u.banned %}
+                <form method="POST" action="{{ url_for('views.ban_user', user_id=u.id) }}">
+                    <button type="submit" class="btn btn-sm btn-warning ml-3">Banaj</button>
+                </form>
+                {% else %}
+                <span class="badge badge-danger ml-3">Banan</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="admin-card">
+        <h3>Sporočila:</h3>
+        <ul class="list-group mb-4">
+            {% for m in messages %}
+            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 text-dark">
+                <div>
+                    <strong>{{ m.name }}</strong> - <a href="mailto:{{ m.email }}">{{ m.email }}</a><br>
+                    {% if m.subject %}<em>{{ m.subject }}</em><br>{% endif %}
+                    {{ m.message }}<br>
+                    <small class="text-muted">
+                        Poslano: {{ m.sent_at.strftime('%d.%m.%Y ob %H:%M') if m.sent_at else 'Ni podatka o času' }}
+                    </small>
+                </div>
+                <form method="POST" action="{{ url_for('views.delete_message', message_id=m.id) }}">
+                    <button type="submit" class="btn btn-sm btn-danger ml-3">&times;</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="list-group-item bg-transparent border-0 text-dark">Ni sporočil.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{{ url_for('views.schedule_editor') }}" class="btn btn-primary">Uredi urnik</a>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+function deleteMessage(messageId) {
+    fetch("/delete-message", {
+        method: "POST",
+        body: JSON.stringify({ messageId: messageId }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then((_res) => {
+        window.location.reload();
+    });
+}
+</script>
+{% endblock %}

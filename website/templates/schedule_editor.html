@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Uredi Schedule{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📋 Uredi Schedule</h2>
+
+    <!-- Flash sporočila -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} text-center">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Vnos nove vrstice -->
+    <form method="POST" class="mb-5">
+        <div class="row">
+            <div class="form-group">
+                <label for="time">Datum in čas:</label>
+                <input type="datetime-local" name="time" class="form-control" required>
+            </div>            
+            <div class="col">
+                <label for="activity">Activity:</label>
+                <input type="text" name="activity" class="form-control" required>
+            </div>
+            <div class="col">
+                <label for="person">Person Present:</label>
+                <input type="text" name="person" class="form-control" required>
+            </div>
+            <div class="col">
+                <label for="day">Dan:</label>
+                <select name="day" class="form-control" required>
+                    <option value="1">Prvi dan</option>
+                    <option value="2">Drugi dan</option>
+                    <option value="3">Tretji dan</option>
+                    <option value="4">Četrti dan</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success">💾 Shrani vrstico</button>
+        </div>
+    </form>
+
+    <!-- Tabele po dnevih -->
+    {% for d in [1, 2, 3, 4] %}
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">🗓️ Dan {{ d }}</h4>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped mb-0">
+                <thead class="thead-light">
+                    <tr>
+                        <th style="width: 25%;">Time</th>
+                        <th>Activity</th>
+                        <th>Person Present</th>
+                        <th style="width: 20%;">Akcije</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in schedules if s.day == d %}
+                    <tr>
+                        <td>{{ s.match_date.strftime('%d.%m.%Y %H:%M') }}</td>
+                        <td>{{ s.team_name }}</td>
+                        <td>{{ s.person_name }}</td> <!-- Tukaj prikazujemo ime osebe, ki je prisotna -->
+                        <td>
+                            <form method="POST" action="{{ url_for('views.delete_schedule', schedule_id=s.id) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger">🗑️</button>
+                            </form>
+                            <a href="{{ url_for('views.edit_schedule', schedule_id=s.id) }}" class="btn btn-sm btn-secondary">✏️</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4" class="text-center text-muted">Ni vnosov za ta dan.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

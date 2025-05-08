@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Players{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; max-width: 600px; margin: auto;">
+        <h2 class="text-dark text-center">Register for the Camp</h2>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height (cm)</label>
+                <input type="number" id="height" name="height" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="number">Player Number</label>
+                <input type="number" id="number" name="number" class="form-control" required>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="over_18" name="over_18" required>
+                <label class="form-check-label" for="over_18">I confirm that the person paying is over 18</label>
+            </div>
+
+            <h4 class="text-dark mt-4">Payment Information</h4>
+            <div class="form-group">
+                <label for="credit_card">Credit Card Number</label>
+                <input type="text" id="credit_card" name="credit_card" class="form-control" placeholder="Enter card number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" name="cvv" class="form-control" placeholder="CVV" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date (MM/YY)</label>
+                <input type="text" id="expiry_date" name="expiry_date" class="form-control" placeholder="MM/YY" required>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block">Register and Pay $350</button>
+        </form>
+
+        <div class="alert alert-success mt-3 text-center" style="display: none;" id="successMessage">
+            Registration successful! Payment processed.
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        document.getElementById("successMessage").style.display = "block";
+        this.reset();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Travel{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px;">
+        <h2 class="text-dark text-center">Upcoming Tournament: Place Bell, Montreal, Quebec</h2>
+        
+        <!-- Google Maps Embed -->
+        <div class="text-center">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.5851806067354!2d-73.74095688444618!3d45.559551235702206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc9398233cf4253%3A0x724ff715a49b1a5!2sPlace%20Bell!5e0!3m2!1sen!2sca!4v1717941306424!5m2!1sen!2sca" 
+                width="100%" height="450" style="border:0; border-radius: 10px;" allowfullscreen="" 
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <p class="text-muted mt-3">
+            Our next tournament will be held at **Place Bell** in Montreal, Quebec. Place Bell is a modern multi-purpose sports complex 
+            located in the vibrant city of Laval, just outside of Montreal. It is known for hosting exciting sporting events, concerts, and 
+            other entertainment activities.
+        </p>
+
+        <p class="text-muted">
+            The venue offers state-of-the-art facilities and is easily accessible from various parts of Montreal. Visitors can explore 
+            the city's rich cultural heritage, enjoy world-class dining, and participate in numerous outdoor activities such as biking 
+            along the **Lachine Canal** or strolling through **Mount Royal Park**.
+        </p>
+
+        <p class="text-muted">
+            Join us for an exciting competition and an unforgettable experience at **Place Bell** in Montreal, Quebec!
+        </p>
+
+        <!-- Image Section -->
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/travel.jpg') }}" class="img-fluid rounded shadow" alt="Traveling Team">
+        </div>
+    </div>
+</div>
+{% endblock %}

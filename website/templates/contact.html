@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px;">
+        <h2 class="text-dark text-center">Get in Touch</h2>
+        <p class="text-muted text-center">Fill out the form below and we will get back to you as soon as possible.</p>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block">Submit</button>
+        </form>
+
+        <div class="alert alert-success mt-3 text-center" style="display: none;" id="successMessage">
+            Your submission has been received. We will contact you shortly.
+        </div>
+    </div>
+</div>
+
+{% endblock %}

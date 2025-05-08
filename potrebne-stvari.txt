@@ -1,0 +1,5 @@
+#kaj potrebuješ če želiš aplokacijo zagnati v visual studios
+
+flask
+Flask-SQLAlchemy
+flask-login

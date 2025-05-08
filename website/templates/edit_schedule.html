@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Uredi Vrstico{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>✏️ Uredi Vrstico</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="time">Datum in čas:</label>
+            <input type="datetime-local" name="time" class="form-control" 
+                   value="{{ schedule.match_date.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="activity">Aktivnost:</label>
+            <input type="text" name="activity" class="form-control" value="{{ schedule.team_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="person">Prisotna oseba:</label>
+            <!-- Spremenil sem tole, da bo prikazovalo 'schedule.person_name' -->
+            <input type="text" name="person" class="form-control mt-3" 
+            value="{{ schedule.person_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="day">Dan:</label>
+            <select name="day" class="form-control">
+                <option value="1" {% if schedule.day == 1 %}selected{% endif %}>Prvi dan</option>
+                <option value="2" {% if schedule.day == 2 %}selected{% endif %}>Drugi dan</option>
+                <option value="3" {% if schedule.day == 3 %}selected{% endif %}>Tretji dan</option>
+                <option value="4" {% if schedule.day == 4 %}selected{% endif %}>Četrti dan</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">💾 Shrani spremembe</button>
+        <a href="{{ url_for('views.schedule_editor') }}" class="btn btn-secondary">Nazaj</a>
+    </form>
+</div>
+{% endblock %}

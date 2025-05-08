@@ -1,0 +1,215 @@
+/* Osnovne nastavitve */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f7fb;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    color: #fff;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #ecf0f1;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: #34495e;
+}
+
+.sidebar .active {
+    background-color: #2980b9;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 250px;
+    padding: 40px 60px;
+    background-color: #f6f7fb;
+    min-height: 100vh;
+}
+
+/* Admin container */
+.admin-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Admin Cards */
+.admin-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* List Items */
+.list-group-item {
+    background-color: transparent;
+    border: 0;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.list-group-item:hover {
+    background-color: #f4f4f4;
+}
+
+/* Glavna kartica */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.card table th, .card table td {
+    padding: 12px 16px;
+    border: 1px solid #e1e4e8;
+    text-align: left;
+}
+
+.card table th {
+    background-color: #f4f6f9;
+}
+
+/* Obrazci */
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+form .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Gumbi */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1c5980;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Spacing and Centering */
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+.mb-4 {
+    margin-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .admin-container {
+        padding: 15px;
+    }
+
+    .admin-card {
+        padding: 15px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 15px;
+    }
+}
